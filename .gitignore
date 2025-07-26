@@ -1,0 +1,41 @@
+# Python virtual environment
+venv/
+venv311/
+.env
+
+# Caches and compiled files
+__pycache__/
+*.pyc
+*.pkl
+
+# Generated folders containing output data
+# We do not commit these to the repository
+results/
+logs/
+
+# Large data and model files
+data/
+models/*.pth
+
+# Test data
+tests/*.csv
+
+# macOS and cloud sync system files
+.DS_Store
+Icon?
+.tmp.drivedownload
+*.tmp
+
+# Editor specific folders
+.vscode/
+.idea/
+
+# Data/Models
+glove.6B/
+*.h5
+*.pt
+*.model
+
+# Ignore downloaded model and embedding files
+models/final_bert_baseline/
+models/glove.6B.100d.txt
