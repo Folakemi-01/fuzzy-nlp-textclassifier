@@ -6,40 +6,17 @@
 **Project Supervisor:** Dr Naomi Adel 
 
 
----
+# Improving Multi-class Text Classification Using Fuzzy Logic
 
-## 1. Project Overview
+This repository contains the source code, experimental data, and trained models for the Master's dissertation project titled "Improving Multi-class Text Classification Accuracy Using Fuzzy Logic and NLP Techniques".
 
-This project investigates a novel hybrid architecture for multi-class text classification, aiming to improve performance in contexts of high linguistic ambiguity. The core hypothesis is that integrating a fuzzy inference system with a Transformer-based model can yield more accurate and interpretable results than a standard deep learning approach alone.
+## Project Overview
 
-The research implements and evaluates a `FuzzyBertClassifier`, which applies a targeted, knowledge-based fuzzy rule set to the softmax probability outputs of a fine-tuned BERT model. This hybrid model is rigorously benchmarked against the standard `bert-base-uncased` classifier on the 20 Newsgroups dataset, a classic benchmark known for its thematic overlap between categories.
+This project investigates a novel approach to improving text classification on ambiguous documents by integrating a knowledge-based fuzzy logic system with a state-of-the-art BERT model. The research includes a quantitative evaluation of the hybrid model's performance, statistical significance testing, and a qualitative, human-centred study on its perceived usability.
 
-The findings demonstrate that a simple, manually engineered fuzzy rule is insufficient to improve upon the baseline and can be detrimental to performance, highlighting the complexity of intervening in the decision-making process of deep neural networks.
+## Setup and Installation
 
-## 2. Project Structure
-
-The repository is organized into a modular structure to ensure clarity, maintainability, and full reproducibility of the experimental results.
-
--   **/src**: Contains all Python source code.
-    -   `models/`: Contains the class definitions for `BaselineBertClassifier` and `FuzzyClassifier`.
-    -   `data_loader.py`: Handles loading and splitting of the dataset.
-    -   `preprocessing.py`: Contains the text cleaning and preprocessing function.
-    -   `runner.py`: The main `ExperimentRunner` class that orchestrates the entire training and prediction pipeline.
-    -   `evaluation.py`: The `Evaluation` class, which takes the runner's output to generate all metrics and visualisations.
--   **/results**: The designated output directory for all generated files, including performance metrics (`.csv`) and confusion matrices (`.png`).
--   **/models**: The designated output directory for the saved, trained baseline model (`.pth` file).
--   `config.py`: A centralized configuration file for all project parameters (e.g., file paths, model hyperparameters).
--   `main.py`: The single entry point to execute the full experiment and evaluation pipeline.
--   `requirements.txt`: A list of all Python dependencies required to run the project.
-
-## 3. Setup and Execution
-
-### Prerequisites
-- Python 3.10+
-- Git
-
-### Installation
-To set up the environment and run this project, follow these steps from your terminal:
+The project was developed using Python 3.9+.
 
 1.  **Clone the repository:**
     ```bash
@@ -53,13 +30,16 @@ To set up the environment and run this project, follow these steps from your ter
     source venv/bin/activate
     ```
 
-3.  **Install all required dependencies:**
+3.  **Install the required dependencies:**
     ```bash
     pip install -r requirements.txt
     ```
 
-### Running the Experiment
-The entire pipeline—from data loading to final evaluation—can be executed with a single command:
+## How to Run
+
+### Main Experiment
+
+To retrain the baseline model and run the main evaluation (as reported in Section 5.2 of the dissertation), execute the following command from the root directory:
 
 ```bash
-python main.py
+python main.py --train --evaluate

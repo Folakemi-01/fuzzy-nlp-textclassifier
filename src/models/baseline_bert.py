@@ -52,3 +52,18 @@ class BaselineBertClassifier:
                 logits.append(outputs.logits.cpu())
         probabilities = torch.nn.functional.softmax(torch.cat(logits, dim=0), dim=1)
         return probabilities.numpy()
+
+    def predict(self, text: str) -> int:
+        """
+        Predicts the class index for a single piece of text.
+        
+        Args:
+            text (str): The input text to classify.
+            
+        Returns:
+            int: The predicted class index.
+        """
+        # We wrap the single text in a list because predict_proba expects a list
+        probabilities = self.predict_proba([text])
+        # Return the index of the highest probability
+        return np.argmax(probabilities, axis=1)[0]

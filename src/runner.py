@@ -37,21 +37,16 @@ class ExperimentRunner:
         
         baseline_model = BaselineBertClassifier(num_classes=len(target_names))
 
-        # --- THIS IS THE MODIFIED LOGIC ---
-        # Check if a trained model already exists.
         if os.path.exists(BASELINE_MODEL_PATH):
-            # If it exists, load it to save time.
             logging.info(f"Found existing model. Loading from {BASELINE_MODEL_PATH}")
             baseline_model.model.load_state_dict(torch.load(BASELINE_MODEL_PATH, map_location=torch.device(DEVICE)))
         else:
-            # If it does not exist, train it and save it.
             logging.info(f"No model found at {BASELINE_MODEL_PATH}. Starting training...")
             start_time = time.time()
             baseline_model.train(X_train_processed, y_train, epochs=NUM_EPOCHS, batch_size=BATCH_SIZE)
             torch.save(baseline_model.model.state_dict(), BASELINE_MODEL_PATH)
             logging.info(f"Baseline model trained and saved in {time.time() - start_time:.2f} seconds.")
-        # --- END OF MODIFIED LOGIC ---
-
+        
         logging.info("--- Generating Predictions ---")
         start_time = time.time()
         baseline_probabilities = baseline_model.predict_proba(X_test_processed)

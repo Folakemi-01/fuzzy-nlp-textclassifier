@@ -3,8 +3,8 @@
 import torch
 
 # --- DEVELOPMENT ---
-# Set to True to run on a small subset of data for fast debugging
-DEBUG_MODE = False
+
+DEBUG_MODE = True
 DEBUG_DATA_SIZE = 100 # Number of samples to use in debug mode
 
 # --- DIRECTORIES ---
